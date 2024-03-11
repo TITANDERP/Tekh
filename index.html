@@ -1,13 +1,12 @@
 <!-- EBURP-->
-<meta name="viewport" content="user-scalable=no">
 <html>
 <head>
     <!-- Get pixel size for canvases -->
     <script type="text/javascript">
         var pixelWidth = Math.round(
-          //game screen should cover 0.8 of view
-          //divide by 8 tiles and 16 pixels
-          ((window.innerWidth * 0.8)/8)/16
+            //game screen should cover 0.8 of view
+            //divide by 8 tiles and 16 pixels
+            ((window.innerWidth * 0.8)/8)/16
         );
     </script>
     <!-- Icon Map -->
@@ -90,6 +89,7 @@
 </head>
 
 <body onLoad="App.init();" style="margin: 0; padding: 0;">
+
 <div style="text-align:center; width: 100%; min-height: 100%; background-image: url('deviceWeb.png'); background-repeat: no-repeat; background-size: cover;">
 
     <canvas id="screenID"
@@ -103,25 +103,15 @@
 </div>
 
 <script>
-    document.getElementById("screenID").width = 128 * pixelWidth;
-    document.getElementById("screenID").height = 128 * pixelWidth;
-    document.getElementById("controlID").width = 160 * pixelWidth;
-    document.getElementById("controlID").height = 100 * pixelWidth;
+    var SID = document.getElementById("screenID");
+    var CID = document.getElementById("controlID");
+    SID.width = 128 * pixelWidth;
+    SID.height = 128 * pixelWidth;
+    CID.width = 160 * pixelWidth;
+    CID.height = 100 * pixelWidth;
 </script>
 
-<!--
-<div>
-    <audio autoplay="autoplay" loop="loop">
-        <source src="gurkTest.mp3"/>
-        <source src="gurkTest.ogg"/>
-    </audio>
-</div>
--->
-<div style="background: #fff; display: none;">
-    <canvas id="workID" width="60px" height="60px"></canvas>
-</div>
-<!-- Yes indeed, some hard-coding is underway... -->
-<!-- TUNES -->
+<!-- MUSIC -->
 <audio id="gurkdemo4" preload="auto" loop="true">
     <source src="audio/gurkdemo4.mp3" type="audio/mpeg">
     <source src="audio/gurkdemo4.ogg" type="audio/ogg">
@@ -138,9 +128,7 @@
     <source src="audio/gurkdemo9.mp3" type="audio/mpeg">
     <source src="audio/gurkdemo9.ogg" type="audio/ogg">
 </audio>
-<!--<audio id="gurkdemo7" src="gurkdemo7.ogg" preload="auto" loop="true"></audio>-->
-<!--<audio id="gurkdemo8" src="gurkdemo8.ogg" preload="auto" loop="true"></audio>-->
-<!--<audio id="gurkdemo9" src="gurkdemo9.ogg" preload="auto" loop="true"></audio>-->
+
 <!-- SOUNDS -->
 <audio id="resist" src="audio/resist.wav" preload="auto"></audio>
 <audio id="port" src="audio/port.wav" preload="auto"></audio>
@@ -157,5 +145,10 @@
 <audio id="spell" src="audio/spell.wav" preload="auto"></audio>
 <audio id="summon" src="audio/summon.wav" preload="auto"></audio>
 
+<div style="background: #fff; display: none;">
+    <canvas id="workID" width="60px" height="60px"></canvas>
+</div>
+
 </body>
+
 </html>
