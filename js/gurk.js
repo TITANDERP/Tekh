@@ -986,9 +986,9 @@
 
       this.clear = __bind(this.clear, this);
 
-      Screen.FONT = new Font(Screen.MICRO_GLYPHS, "font_micro" + Screen.SCALE + ".png");
-      this.icons = [Preloader.getImage("icons0-" + Screen.SCALE + ".png"), Preloader.getImage("icons1-" + Screen.SCALE + ".png")];
-      this.screen = Preloader.getImage("screen" + Screen.SCALE + ".png");
+      Screen.FONT = new Font(Screen.MICRO_GLYPHS, "img/font_micro" + Screen.SCALE + ".png");
+      this.icons = [Preloader.getImage("img/icons0-" + Screen.SCALE + ".png"), Preloader.getImage("img/icons1-" + Screen.SCALE + ".png")];
+      this.screen = Preloader.getImage("img/screen" + Screen.SCALE + ".png");
       Screen.CENTER_OFFSET = Math.floor(Screen.WIN_SIZE / 2);
     }
 
@@ -1362,10 +1362,10 @@
 
       this.draw = __bind(this.draw, this);
 
-      ButtonGrid.FONT = new Font(ButtonGrid.GURKOID_GLYPHS, "font_gurkoid" + Screen.SCALE + ".png");
-      ButtonGrid.onImage = Preloader.getImage("button" + Screen.SCALE + ".png");
-      ButtonGrid.offImage = Preloader.getImage("buttonoff" + Screen.SCALE + ".png");
-      ButtonGrid.topImage = Preloader.getImage("buttontop" + Screen.SCALE + ".png");
+      ButtonGrid.FONT = new Font(ButtonGrid.GURKOID_GLYPHS, "img/font_gurkoid" + Screen.SCALE + ".png");
+      ButtonGrid.onImage = Preloader.getImage("img/button" + Screen.SCALE + ".png");
+      ButtonGrid.offImage = Preloader.getImage("img/buttonoff" + Screen.SCALE + ".png");
+      ButtonGrid.topImage = Preloader.getImage("img/buttontop" + Screen.SCALE + ".png");
       index = 1;
       yy = GAP_Y;
       this.buttons = new Array(3);
@@ -5430,7 +5430,7 @@
       this.posX = this.game.x;
       this.posY = this.game.y;
       this.mapMode = false;
-      this.shadowOverlay = Preloader.getImage("shadow" + Screen.SCALE + ".png");
+      this.shadowOverlay = Preloader.getImage("img/shadow" + Screen.SCALE + ".png");
       this.setButton(1, "HEROES");
       this.setButton(9, "MAP");
       this.setButton(3, "SAVE");
@@ -10812,15 +10812,15 @@
 
       this.startSavedGame = __bind(this.startSavedGame, this);
       console.log("Preloading..., scale is " + Screen.SCALE);
-      Preloader.load("icons0-" + Screen.SCALE + ".png");
-      Preloader.load("icons1-" + Screen.SCALE + ".png");
-      Preloader.load("screen" + Screen.SCALE + ".png");
-      Preloader.load("font_micro" + Screen.SCALE + ".png");
-      Preloader.load("font_gurkoid" + Screen.SCALE + ".png");
-      Preloader.load("button" + Screen.SCALE + ".png");
-      Preloader.load("buttonoff" + Screen.SCALE + ".png");
-      Preloader.load("buttontop" + Screen.SCALE + ".png");
-      Preloader.load("shadow" + Screen.SCALE + ".png");
+      Preloader.load("img/icons0-" + Screen.SCALE + ".png");
+      Preloader.load("img/icons1-" + Screen.SCALE + ".png");
+      Preloader.load("img/screen" + Screen.SCALE + ".png");
+      Preloader.load("img/font_micro" + Screen.SCALE + ".png");
+      Preloader.load("img/font_gurkoid" + Screen.SCALE + ".png");
+      Preloader.load("img/button" + Screen.SCALE + ".png");
+      Preloader.load("img/buttonoff" + Screen.SCALE + ".png");
+      Preloader.load("img/buttontop" + Screen.SCALE + ".png");
+      Preloader.load("img/shadow" + Screen.SCALE + ".png");
       console.log("Preloading started...");
       Preloader.setCallback(this.start);
     }
