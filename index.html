@@ -1,0 +1,156 @@
+<!-- EBURP-->
+<html>
+<head>
+    <script type="text/javascript">
+        var pixelWidth = Math.round(((window.innerWidth * 0.8)/8)/16);
+        console.log(window.screen.width);
+        console.log(pixelWidth);
+    </script>
+    <!-- Icon Map -->
+    <script type="text/javascript" src="icons.js"></script>
+    <!-- Game Data -->
+    <script type="text/javascript" src="game.js"></script>
+    <!-- Game Code -->
+    <script type="text/javascript" src="gurk.js"></script>
+    <script type="text/javascript">
+        var drawHack = false;
+        var GAP_X = 6;
+        var GAP_Y = 11;
+        var GRID_WIDTH = 159;
+        var GRID_HEIGHT = 113;
+        var soundOn = true;
+        var currentTrack;
+
+        function toggleSound() {
+            soundOn = !soundOn;
+            if (soundOn) {
+                document.getElementById("soundToggle").innerHTML = "off";
+                if (currentTrack) {
+                    playTrack(currentTrack);
+                }
+            } else {
+                document.getElementById("soundToggle").innerHTML = "on";
+                stopTrack();
+            }
+        }
+
+        function phoneClick(event, x, y) {
+            App.gurk.phoneClick(event, x, y);
+            return false;
+        }
+
+        function playAudio(sound) {
+            if (soundOn) {
+                var element = document.getElementById(sound);
+                element.volume = 0.25;
+                element.play();
+            }
+            return false;
+        }
+        function playTrack(track) {
+            if (currentTrack == track) {
+                if (soundOn) {
+                    document.getElementById(currentTrack).play();
+                }
+                return false;
+            }
+            if (currentTrack) {
+                document.getElementById(currentTrack).pause();
+            }
+            currentTrack = track;
+            if (soundOn) {
+                document.getElementById(currentTrack).currentTime = 0;
+                document.getElementById(currentTrack).play();
+            }
+            return false;
+        }
+        function stopTrack() {
+            if (currentTrack) {
+                document.getElementById(currentTrack).pause();
+            }
+            return false;
+        }
+
+        function putData(key, value) {
+            localStorage[key] = value;
+        }
+        function getData(key) {
+            return localStorage[key]
+        }
+        function doCustomDraws() {
+            return true;
+        }
+
+    </script>
+
+</head>
+<body onLoad="App.init();" style="margin: 0; padding: 0;">
+<div style="text-align:center; width: 100%; min-height: 100%; background-image: url('deviceWeb.png'); background-repeat: no-repeat; background-size: cover;">
+
+    <canvas id="screenID"
+        style="margin-top: 20%; border: 6px solid #000; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">
+    </canvas>
+
+    <canvas id="controlID" onclick="phoneClick(event, 0, 0)" 
+        style="padding-top: 2%;">
+    </canvas>
+
+</div>
+
+<script>
+    document.getElementById("screenID").width = 128 * pixelWidth;
+    document.getElementById("screenID").height = 128 * pixelWidth;
+    document.getElementById("controlID").width = 160 * pixelWidth;
+    document.getElementById("controlID").height = 100 * pixelWidth;
+</script>
+
+<!--
+<div>
+    <audio autoplay="autoplay" loop="loop">
+        <source src="gurkTest.mp3"/>
+        <source src="gurkTest.ogg"/>
+    </audio>
+</div>
+-->
+<div style="background: #fff; display: none;">
+    <canvas id="workID" width="60px" height="60px"></canvas>
+</div>
+<!-- Yes indeed, some hard-coding is underway... -->
+<!-- TUNES -->
+<audio id="gurkdemo4" preload="auto" loop="true">
+    <source src="gurkdemo4.mp3" type="audio/mpeg">
+    <source src="gurkdemo4.ogg" type="audio/ogg">
+</audio>
+<audio id="gurkdemo7" preload="auto" loop="true">
+    <source src="gurkdemo7.mp3" type="audio/mpeg">
+    <source src="gurkdemo7.ogg" type="audio/ogg">
+</audio>
+<audio id="gurkdemo8" preload="auto" loop="true">
+    <source src="gurkdemo8.mp3" type="audio/mpeg">
+    <source src="gurkdemo8.ogg" type="audio/ogg">
+</audio>
+<audio id="gurkdemo9" preload="auto" loop="true">
+    <source src="gurkdemo9.mp3" type="audio/mpeg">
+    <source src="gurkdemo9.ogg" type="audio/ogg">
+</audio>
+<!--<audio id="gurkdemo7" src="gurkdemo7.ogg" preload="auto" loop="true"></audio>-->
+<!--<audio id="gurkdemo8" src="gurkdemo8.ogg" preload="auto" loop="true"></audio>-->
+<!--<audio id="gurkdemo9" src="gurkdemo9.ogg" preload="auto" loop="true"></audio>-->
+<!-- SOUNDS -->
+<audio id="resist" src="resist.wav" preload="auto"></audio>
+<audio id="port" src="port.wav" preload="auto"></audio>
+<audio id="tele" src="tele.wav" preload="auto"></audio>
+<audio id="enhanced" src="enhanced.wav" preload="auto"></audio>
+<audio id="afflicted" src="afflicted.wav" preload="auto"></audio>
+<audio id="died" src="died.wav" preload="auto"></audio>
+<audio id="fire" src="fire.wav" preload="auto"></audio>
+<audio id="heal" src="heal.wav" preload="auto"></audio>
+<audio id="hit" src="hit.wav" preload="auto"></audio>
+<audio id="killed" src="killed.wav" preload="auto"></audio>
+<audio id="miss" src="miss.wav" preload="auto"></audio>
+<audio id="move" src="move.wav" preload="auto"></audio>
+<audio id="spell" src="spell.wav" preload="auto"></audio>
+<audio id="summon" src="summon.wav" preload="auto"></audio>
+
+</body>
+</html>
