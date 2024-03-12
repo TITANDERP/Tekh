@@ -5282,7 +5282,7 @@
         this.clearButton(3);
       }
       this.setButton(7, "OPTIONS");
-      return this.setButton(9, "CHECK");
+      return;
     };
 
     SplashView.prototype.doDraw = function() {
@@ -10202,59 +10202,6 @@
 
   })();
 
-  Test = (function() {
-
-    function Test() {}
-
-    Test.assert = function(condition, failDescription) {
-      if (!condition) {
-        return console.log("ASSERTION FAILED: " + failDescription);
-      }
-    };
-
-    Test.run = function() {
-      var damage, leatherArmor, rugnar, shortSword, shortSwordTemplate;
-      console.log("--- TESTING START ---");
-      shortSwordTemplate = Library.getItemTemplateByName("Short Sword");
-      Test.assert(shortSwordTemplate, "Short sword template not found by name");
-      shortSword = new Item(shortSwordTemplate, 100, 2);
-      Test.assert(shortSword.name === "Short Sword +2", "Short Sword name is wrong.");
-      Test.assert(shortSword.getMeleeMinDamage() === 3, "Short Sword melee min damage is wrong.");
-      Test.assert(shortSword.getMeleeMaxDamage() === 7, "Short Sword melee max damage is wrong.");
-      Test.assert(shortSword.getToHitBonus() === 2, "Short Sword to hit bonus is wrong.");
-      Test.assert(shortSword.getArmorClass() === 0, "Short Sword should have 0 AC.");
-      leatherArmor = new Item(Library.getItemTemplateByName("Leather Armor"), 101, -1);
-      Test.assert(leatherArmor.getArmorClass() === 1, "Leather Armor -1 should have 1 AC");
-      rugnar = new Player(Data.characters[0]);
-      Test.assert(rugnar.strength >= rugnar.accuracy, "Strength is not greatest attribute.");
-      Test.assert(rugnar.strength >= rugnar.awareness, "Strength is not greatest attribute.");
-      Test.assert(rugnar.strength >= rugnar.constitution, "Strength is not greatest attribute.");
-      Test.assert(rugnar.maxHitPoints > 0, "Max hit points not positive.");
-      Test.assert(rugnar.hitPoints === rugnar.maxHitPoints, "Hit points not equal to max hit points.");
-      rugnar.strength = 18;
-      Test.assert(rugnar.getAttributeBonus(rugnar.strength) === 3, "Strength bonus incorrect.");
-      damage = rugnar.getMeleeDamageBounds();
-      Test.assert(damage.min === 1 + 3, "Min damage is wrong");
-      Test.assert(damage.max === 1 + 3, "Max damage is wrong");
-      rugnar.addItem(shortSword);
-      rugnar.equipItem(shortSword);
-      damage = rugnar.getMeleeDamageBounds();
-      Test.assert(damage.min === 1 + 2 + 3, "Min damage is wrong");
-      Test.assert(damage.max === 5 + 2 + 3, "Max damage is wrong");
-      rugnar.addItem(leatherArmor);
-      rugnar.equipItem(leatherArmor);
-      rugnar.awareness = 14;
-      Test.assert(rugnar.getArmorClass() === 1 + 1, "Rugnar armor class is wrong.");
-      rugnar.unequipItem(leatherArmor);
-      Test.assert(rugnar.getArmorClass() === 0 + 1, "Rugnar armor class is wrong after unequip.");
-      rugnar.dropItem(leatherArmor);
-      Test.assert(rugnar.items.length === 1, "Rugnar should have 1 item.");
-      return console.log("--- TESTING COMPLETED ---");
-    };
-
-    return Test;
-
-  }).call(this);
 
   Validate = (function() {
 
@@ -10538,94 +10485,9 @@
     };
 
     Gurk.prototype.startNewGame = function(game) {
-      var club, mapView, shortStaff, sling;
+      var mapView
       this.game = game;
-      club = this.game.createItem(Library.getItemTemplateByName("Crude Club"));
-      sling = this.game.createItem(Library.getItemTemplateByName("Sling"));
-      shortStaff = this.game.createItem(Library.getItemTemplateByName("Short Staff"));
-      this.game.players[0].addItem(club);
-      this.game.players[0].equipItem(club);
-      this.game.players[1].addItem(sling);
-      this.game.players[1].equipItem(sling);
-      this.game.players[2].addItem(shortStaff);
-      this.game.players[2].equipItem(shortStaff);
-      /*
-          bloodSword = @game.createItem(Library.getItemTemplateByName("Bloodsword"))
-          @game.players[0].addItem(bloodSword)
-          @game.players[0].equipItem(bloodSword)
-          @game.gold = 20000
-          @game.players[2].maxSpellPoints = 50;
-          wandOfFire = @game.createItem(Library.getItemTemplateByName("Hydrosword"))
-          @game.players[0].addItem(wandOfFire)
-      
-          for i in [0 ... 3]
-            @game.players[i].maxHitPoints = 100;
-            @game.players[i].maxSpellPoints = 100;
-            @game.players[i].level = 10;
-            @game.players[i].strength += 10;
-            @game.players[i].accuracy += 10;
-            @game.players[i].awareness += 10;
-            @game.players[i].constitution += 10;
-            @game.players[i].experience = 30000;
-      
-          @game.transitionTo("shuunia", 13, 7)
-      */
 
-      mapView = new MapView(this);
-      return this.setView(mapView);
-    };
-
-    Gurk.prototype.startTestGame = function() {
-      var bowOfFortune, healingSalve, heavyAxe, leatherArmor, leatherBoots, leatherBoots2, mapView, ranger, serpentSword, shortBow, shortSword, shortSword2, shortSword3, speedBoots, wandOfBlessing, wandOfBlessing2, wandOfStriking, warrior, wizard;
-      this.game = new Game();
-      warrior = new Player(Data.characters[0]);
-      shortSword = this.game.createItem(Library.getItemTemplateByName("Short Sword"), 1);
-      serpentSword = this.game.createItem(Library.getItemTemplateByName("Serpentongue"));
-      shortSword2 = this.game.createItem(Library.getItemTemplateByName("Short Sword"), 2);
-      shortSword3 = this.game.createItem(Library.getItemTemplateByName("Short Sword"), -1);
-      heavyAxe = this.game.createItem(Library.getItemTemplateByName("Heavy Axe"));
-      leatherArmor = this.game.createItem(Library.getItemTemplateByName("Leather Armor"), 1);
-      leatherBoots = this.game.createItem(Library.getItemTemplateByName("Leather Boots"), 0);
-      healingSalve = this.game.createItem(Library.getItemTemplateByName("Healing Salve"), 1, 3);
-      wandOfBlessing = this.game.createItem(Library.getItemTemplateByName("Wand of Blessing"), 0, 2);
-      wandOfBlessing2 = this.game.createItem(Library.getItemTemplateByName("Wand of Blessing"), 0, 2);
-      wandOfStriking = this.game.createItem(Library.getItemTemplateByName("Wand of Striking"), 1, 2);
-      warrior.addItem(serpentSword);
-      warrior.addItem(shortSword);
-      warrior.addItem(shortSword2);
-      warrior.addItem(shortSword3);
-      warrior.addItem(leatherArmor);
-      warrior.addItem(heavyAxe);
-      warrior.addItem(leatherBoots);
-      warrior.addItem(wandOfBlessing);
-      warrior.addItem(healingSalve);
-      warrior.addItem(wandOfStriking);
-      warrior.equipItem(serpentSword);
-      warrior.equipItem(leatherArmor);
-      warrior.equipItem(leatherBoots);
-      warrior.hitPoints = 1;
-      warrior.experience = 49;
-      ranger = new Player(Data.characters[1]);
-      shortBow = this.game.createItem(Library.getItemTemplateByName("Short Bow"), 1);
-      bowOfFortune = this.game.createItem(Library.getItemTemplateByName("Bow of Fortune"));
-      speedBoots = this.game.createItem(Library.getItemTemplateByName("Speed Boots"), 0);
-      leatherBoots2 = this.game.createItem(Library.getItemTemplateByName("Leather Boots"), 0);
-      ranger.addItem(shortBow);
-      ranger.addItem(bowOfFortune);
-      ranger.equipItem(bowOfFortune);
-      ranger.addItem(leatherBoots2);
-      ranger.addItem(speedBoots);
-      ranger.equipItem(speedBoots);
-      wizard = new Player(Data.characters[2]);
-      wizard.level = 2;
-      wizard.maxSpellPoints = 20;
-      wizard.spellPoints = 20;
-      wizard.experience = 119;
-      wizard.addItem(wandOfBlessing2);
-      this.game.addPlayer(warrior);
-      this.game.addPlayer(ranger);
-      this.game.addPlayer(wizard);
-      this.game.buildFeatures();
       mapView = new MapView(this);
       return this.setView(mapView);
     };
