@@ -243,7 +243,6 @@ var Data = {
     tiles : {
         "X" : {icon : "wall.png", passable : false, shipPassable : false, opaque : true, color : "#585858"}, 
         "." : {icon : "floor.png", passable : true, shipPassable : false, opaque : false, color : "#8e8e8e"},
-        "~" : {icon : "water2.png", passable : false, shipPassable : true, opaque : false, color : "#2828f0"},
         "*" : {icon : "lava.png", passable : false, shipPassable : false, opaque : false, color : "#c62700"},
         "&" : {icon : "volcano.png", passable : false, shipPassable : false, opaque : true, color : "#500000"},
         "=" : {icon : "grass.png", passable : true, shipPassable : false, opaque : false, color : "#28f028"},
@@ -256,8 +255,6 @@ var Data = {
         "'" : {icon : "caveFloor.png", passable : true, shipPassable : false, opaque : false, color : "#925e1a"},
         "C" : {icon : "caveWall.png", passable : false, shipPassable : false, opaque : true, color : "#5c3708"},
         "d" : {icon : "deck.png", passable : true, shipPassable : false, opaque : false, color : "#925e1a"},
-        "l" : {icon : "gunnelLeft.png", passable : false, shipPassable : false, opaque : true, color : "#5c3708"},
-        "r" : {icon : "gunnelRight.png", passable : false, shipPassable : false, opaque : true, color : "#5c3708"},
         ":" : {icon : "desert.png", passable : true, shipPassable : false, opaque : false, color : "#cd964e"},
         "-" : {icon : "bridgeHorizontal.png", passable : true, shipPassable : false, opaque : false, color : "#63390e"},
         "|" : {icon : "bridgeVertical.png", passable : true, shipPassable : false, opaque : false, color : "#63390e"},
@@ -274,13 +271,7 @@ var Data = {
         "_" : {icon : "darkBridgeHorizontal.png", passable : true, shipPassable : false, opaque : false, color : "#8e6464"},
         "]" : {icon : "darkBridgeVertical.png", passable : true, shipPassable : false, opaque : false, color : "#8e6464"},
         "R" : {icon : "river.png", passable : false, shipPassable : true, opaque : false, color : "#06796d"},
-        "%" : {icon : "iceMountain.png", passable : false, shipPassable : false, opaque : true, color : "#909090"},
-        "i" : {icon : "ice.png", passable : true, shipPassable : false, opaque : false, color : "#ffffff"},
-        "S" : {icon : "tundra.png", passable : true, shipPassable : false, opaque : false, color : "#525f47"},
-        "Y" : {icon : "iceberg.png", passable : true, shipPassable : false, opaque : false, color : "#9eb8be"},
         "p" : {icon : "pool.png", passable : false, shipPassable : false, opaque : false, color : "#0808D0"},
-        "f" : {icon : "iceFloor.png", passable : true, shipPassable : false, opaque : false, color : "#a8c4dd"},
-        "w" : {icon : "iceWall.png", passable : false, shipPassable : false, opaque : true, color : "#5b7497"},
         "L" : {icon : "columnTile.png", passable : false, shipPassable : false, opaque : true, color : "#222222"}
     },
 
@@ -333,28 +324,28 @@ var Data = {
         "town" : {
             name : "Bryerlake",
 			map : "\
-========================~~~\
-===========!=!=========~~~~\
-=======================~~~~\
-==========!!=!!========~~~~\
-===XXXXXXXXXDXXXXXXXXXX~~~~\
-===X=!=!===X.X===!!!!!!~~~~\
-===X=====!=...=====!!!!~~~~\
-===X=!=!====.=======!!~~~~~\
-===X=======...===!==!!~~~~~\
-===X===.....p.....===!~~~~~\
-===X=======...===!===~~~~~~\
-===X=!=!======!!=====~~~~~~\
-===X=====!==!!!!!=====~~~~~\
-===X=!=!===!!~~!====!!~~~~~\
-===X=====!==!~~~~===!~~~~~~\
-===X=========~~=~~~~~~~~~~~\
-===X!~~!======!=!!===~~~~~~\
-=~~X~~~~~==~~=====!~~~~~~~~\
-~~~~~~~~~~~~~~~~~~~~~~~~~~~\
-~~~~~~~~~~~~~~~~~~~~~~~~~~~\
-~~~~~~~~~~~~~~~~~~~~~~~~~~~\
-~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+===========================\
+===========!=!=============\
+===========================\
+==========!!=!!============\
+===XXXXXXXXXDXXXXXXXXXX====\
+===X=!=!===X.X===!!!!!!====\
+===X=====!=...=====!!!!====\
+===X=!=!====.=======!!=====\
+===X=======...===!==!!=====\
+===X===.....p.....===!=====\
+===X=======...===!=========\
+===X=!=!======!!===========\
+===X=====!==!!!!!==========\
+===X=!=!===!!==!====!!=====\
+===X=====!==!=======!======\
+===X=======================\
+===X!==!======!=!!=========\
+===X==============!========\
+===========================\
+===========================\
+===========================\
+===========================\
 ",
 			width : 27,
 			height : 22,
@@ -394,92 +385,15 @@ MMMM=====\
 M!!=====!\
 !===!==!!\
 =!=!==!!!\
-=~|~==!MM\
-~~~~~=!!M\
-~~~~~===M\
-~~~~!!!MM\
+==|===!MM\
+======!!M\
+========M\
+====!!!MM\
 ",
 			width : 9,
 			height : 9,
             features : [
-                {
-                    type : "sign",
-                    x : 4,
-                    y : 1,
-                    icon : "gurk_01.png"
-                },
-                {
-                    type : "sign",
-                    x : 5,
-                    y : 1,
-                    icon : "gurk_02.png"
-                },
-                {
-                    type : "sign",
-                    x : 6,
-                    y : 1,
-                    icon : "gurk_03.png"
-                },
-                {
-                    type : "sign",
-                    x : 7,
-                    y : 1,
-                    icon : "gurk_04.png"
-                },
-                {
-                    type : "sign",
-                    x : 4,
-                    y : 2,
-                    icon : "gurk_05.png"
-                },
-                {
-                    type : "sign",
-                    x : 5,
-                    y : 2,
-                    icon : "gurk_06.png"
-                },
-                {
-                    type : "sign",
-                    x : 6,
-                    y : 2,
-                    icon : "gurk_07.png"
-                },
-                {
-                    type : "sign",
-                    x : 7,
-                    y : 2,
-                    icon : "gurk_08.png"
-                },
-                {
-                    type : "sign",
-                    x : 1,
-                    y : 7,
-                    icon : "ship.png"
-                },
-                {
-                    type : "sign",
-                    x : 1,
-                    y : 3,
-                    icon : "bigCastleLeft.png"
-                },
-                {
-                    type : "sign",
-                    x : 2,
-                    y : 3,
-                    icon : "bigCastleCenter.png"
-                },
-                {
-                    type : "sign",
-                    x : 3,
-                    y : 3,
-                    icon : "bigCastleRight.png"
-                },
-                {
-                    type : "sign",
-                    x : 7,
-                    y : 7,
-                    icon : "temple.png"
-                }
+
             ]
         }
     },
