@@ -308,7 +308,6 @@ var Data = {
 ",
 			width : 12,
 			height : 12,
-            music : "gurkdemo4",
             dark: false,
             level: 1, // This level is a guide as to what levels of creatures should be randomly encountered.
             encounterChance : 25, // Chance of a random encounter each step the party takes
@@ -349,7 +348,6 @@ var Data = {
 ",
 			width : 27,
 			height : 22,
-            music : "gurkdemo9",
             dark : false,
             level : 1,
             groups : ["default"],

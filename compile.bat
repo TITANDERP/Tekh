@@ -1,0 +1,1 @@
+cat coffee/device.coffee coffee/core.coffee coffee/model.coffee coffee/adventure.coffee coffee/combat.coffee coffee/gurk.coffee | coffee --compile --stdio > js/gurk.js

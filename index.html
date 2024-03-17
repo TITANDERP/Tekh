@@ -1,20 +1,26 @@
 <!-- EBURP-->
 <html>
+
 <head>
     <!-- Get pixel size for canvases -->
     <script type="text/javascript">
-        var pixelWidth = Math.round(
+        var pixelWidth = Math.floor(
             //game screen should cover 0.8 of view
             //divide by 8 tiles and 16 pixels
             ((window.innerWidth * 0.8)/8)/16
         );
+        console.log("pixel size: " + pixelWidth.toString());
+        console.log("screen width: " + window.innerWidth.toString());
     </script>
     <!-- Icon Map -->
     <script type="text/javascript" src="js/icons.js"></script>
     <!-- Game Data -->
     <script type="text/javascript" src="js/game.js"></script>
     <!-- Game Code -->
-    <script type="text/javascript" src="js/gurk.js"></script>
+    <script type="text/javascript" src="js/gurk.js">
+    </script>
+
+
     <script type="text/javascript">
         var drawHack = false;
         var GAP_X = 6;
@@ -86,19 +92,65 @@
 
     </script>
 
+    <style>
+        #screenID
+        {
+            border: 1vb solid #000; 
+            -webkit-border-radius: 1vb; 
+            -moz-border-radius: 1vb; 
+            border-radius: 1vb;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+        }
+
+        #controlID
+        {
+            touch-action: manipulation;
+            
+            margin: auto;
+            
+        }
+
+        #parentContainer
+        {
+            width: 100vw; 
+            min-height: 100vh; 
+            background-image: url('img/device.png'); 
+            background-repeat: no-repeat; 
+            background-size: cover;
+            
+        }
+
+        #screenContainer
+        {
+            height: 49vh;
+            display: flex;
+        }
+
+        #controlContainer
+        {
+            height: 49vh;
+            display: flex;
+        }
+
+    </style>
+
 </head>
 
 <body onLoad="App.init();" style="margin: 0; padding: 0;">
 
-<div style="text-align:center; width: 100%; min-height: 100%; background-image: url('img/device.png'); background-repeat: no-repeat; background-size: cover;">
+<div id="parentContainer">
 
-    <canvas id="screenID"
-        style="margin-top: 20%; border: 8px solid #000; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">
-    </canvas>
+    <div id="screenContainer">
+        <canvas id="screenID"></canvas>
+    </div>
 
-    <canvas id="controlID" onclick="phoneClick(event, 0, 0)" 
-        style="padding-top: 2%; touch-action: manipulation;">
-    </canvas>
+    <br>
+
+    <div id="controlContainer">
+        <canvas id="controlID" onclick="phoneClick(event, 0, 0)"></canvas>
+    </div>
 
 </div>
 
@@ -111,43 +163,7 @@
     CID.height = 100 * pixelWidth;
 </script>
 
-<!-- MUSIC -->
-<audio id="gurkdemo4" preload="auto" loop="true">
-    <source src="audio/gurkdemo4.mp3" type="audio/mpeg">
-    <source src="audio/gurkdemo4.ogg" type="audio/ogg">
-</audio>
-<audio id="gurkdemo7" preload="auto" loop="true">
-    <source src="audio/gurkdemo7.mp3" type="audio/mpeg">
-    <source src="audio/gurkdemo7.ogg" type="audio/ogg">
-</audio>
-<audio id="gurkdemo8" preload="auto" loop="true">
-    <source src="audio/gurkdemo8.mp3" type="audio/mpeg">
-    <source src="audio/gurkdemo8.ogg" type="audio/ogg">
-</audio>
-<audio id="gurkdemo9" preload="auto" loop="true">
-    <source src="audio/gurkdemo9.mp3" type="audio/mpeg">
-    <source src="audio/gurkdemo9.ogg" type="audio/ogg">
-</audio>
-
-<!-- SOUNDS -->
-<audio id="resist" src="audio/resist.wav" preload="auto"></audio>
-<audio id="port" src="audio/port.wav" preload="auto"></audio>
-<audio id="tele" src="audio/tele.wav" preload="auto"></audio>
-<audio id="enhanced" src="audio/enhanced.wav" preload="auto"></audio>
-<audio id="afflicted" src="audio/afflicted.wav" preload="auto"></audio>
-<audio id="died" src="audio/died.wav" preload="auto"></audio>
-<audio id="fire" src="audio/fire.wav" preload="auto"></audio>
-<audio id="heal" src="audio/heal.wav" preload="auto"></audio>
-<audio id="hit" src="audio/hit.wav" preload="auto"></audio>
-<audio id="killed" src="audio/killed.wav" preload="auto"></audio>
-<audio id="miss" src="audio/miss.wav" preload="auto"></audio>
-<audio id="move" src="audio/move.wav" preload="auto"></audio>
-<audio id="spell" src="audio/spell.wav" preload="auto"></audio>
-<audio id="summon" src="audio/summon.wav" preload="auto"></audio>
-
-<div style="background: #fff; display: none;">
-    <canvas id="workID" width="60px" height="60px"></canvas>
-</div>
+<canvas id="workID" style="display: none;"></canvas>
 
 </body>
 
