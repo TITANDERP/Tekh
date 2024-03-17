@@ -692,7 +692,7 @@ class MapView extends TileView
                 return null
         @draw()
 
-  setMap : (mapName, x, y) =>
+  setMap : (gurk, mapName, x, y) =>
     super(gurk, mapName, x, y)
 
     if (@map.music)

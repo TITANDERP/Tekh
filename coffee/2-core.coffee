@@ -353,10 +353,10 @@ class Screen
   constructor: (@ctx) ->
     Screen.FONT = new Font(Screen.MICRO_GLYPHS, "img/font_micro" + Screen.SCALE + ".png")
     @icons = [
-        Preloader.getImage("icons0-" + Screen.SCALE + ".png"),
-        Preloader.getImage("icons1-" + Screen.SCALE + ".png")
+        Preloader.getImage("img/icons0-" + Screen.SCALE + ".png"),
+        Preloader.getImage("img/icons1-" + Screen.SCALE + ".png")
       ]
-    @screen = Preloader.getImage("screen" + Screen.SCALE + ".png")
+    @screen = Preloader.getImage("img/screen" + Screen.SCALE + ".png")
     Screen.CENTER_OFFSET = Math.floor(Screen.WIN_SIZE / 2);
 
   clear: =>
@@ -495,10 +495,10 @@ class ButtonGrid
   buttons : null
 
   constructor: (@ctx, @gurk) ->
-    ButtonGrid.FONT = new Font(ButtonGrid.GURKOID_GLYPHS, "font_gurkoid" + Screen.SCALE + ".png")
-    ButtonGrid.onImage = Preloader.getImage("button" + Screen.SCALE + ".png")
-    ButtonGrid.offImage = Preloader.getImage("buttonoff" + Screen.SCALE + ".png")
-    ButtonGrid.topImage = Preloader.getImage("buttontop" + Screen.SCALE + ".png")
+    ButtonGrid.FONT = new Font(ButtonGrid.GURKOID_GLYPHS, "img/font_gurkoid" + Screen.SCALE + ".png")
+    ButtonGrid.onImage = Preloader.getImage("img/button" + Screen.SCALE + ".png")
+    ButtonGrid.offImage = Preloader.getImage("img/buttonoff" + Screen.SCALE + ".png")
+    ButtonGrid.topImage = Preloader.getImage("img/buttontop" + Screen.SCALE + ".png")
     #gapWidth = (ButtonGrid.GRID_WIDTH - 3 * ButtonGrid.BUTTON_WIDTH) / 4
     #gapHeight = (ButtonGrid.GRID_HEIGHT - 3 * ButtonGrid.BUTTON_HEIGHT) / 2
     index = 1
