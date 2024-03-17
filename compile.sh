@@ -1,1 +1,1 @@
-coffee --join js/gurk.js --compile coffee/*.coffee
+cat coffee/*.coffee | coffee --compile --stdio > js/gurk.js

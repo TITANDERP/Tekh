@@ -2005,6 +2005,13 @@
   // -----------------------------------------------------------------------------
   ConfirmView = class ConfirmView extends AlertView {
     constructor(gurk, icon, title, text, yesResult1, noResult1, altIcon = null) {
+      var noResult, yesResult;
+      noResult = function() {
+        return this.noResult;
+      };
+      yesResult = function() {
+        return this.yesResult;
+      };
       super(gurk, icon, title, text, noResult, altIcon);
       this.command = this.command.bind(this);
       this.yesResult = yesResult1;
@@ -5130,7 +5137,7 @@
         this.posX = this.game.x;
         this.posY = this.game.y;
         this.mapMode = false;
-        this.shadowOverlay = Preloader.getImage("shadow" + Screen.SCALE + ".png");
+        this.shadowOverlay = Preloader.getImage("img/shadow" + Screen.SCALE + ".png");
         this.setButton(1, "HEROES");
         this.setButton(9, "MAP");
         this.setButton(3, "SAVE");
