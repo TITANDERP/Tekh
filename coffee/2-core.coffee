@@ -172,10 +172,11 @@ class Font
     @fontHeight = @glyphMap['A'].height
 
   drawChar: (ctx, c, x, y) =>
+    ctx.imageSmoothingEnabled= false
     glyph = @glyphMap[c]
     xx = x * Screen.SCALE;
     yy = y * Screen.SCALE;
-    ctx.drawImage(@image, Screen.SCALE * glyph.x, Screen.SCALE * glyph.y, Screen.SCALE * glyph.width, Screen.SCALE * glyph.height, xx, yy, Screen.SCALE * glyph.width, Screen.SCALE * glyph.height)
+    ctx.drawImage(@image, glyph.x, glyph.y, glyph.width, glyph.height, xx, yy, Screen.SCALE * glyph.width, Screen.SCALE * glyph.height)
     glyph.width
 
   drawText: (ctx, text, color, x, y) =>
@@ -351,12 +352,13 @@ class Screen
   @FONT : null
 
   constructor: (@ctx) ->
-    Screen.FONT = new Font(Screen.MICRO_GLYPHS, "img/font_micro" + Screen.SCALE + ".png")
+    @ctx.imageSmoothingEnabled= false
+    Screen.FONT = new Font(Screen.MICRO_GLYPHS, "img/font_micro1.png")
     @icons = [
-        Preloader.getImage("img/icons0-" + Screen.SCALE + ".png"),
-        Preloader.getImage("img/icons1-" + Screen.SCALE + ".png")
+        Preloader.getImage("img/icons0-1" + ".png"),
+        Preloader.getImage("img/icons1-1" + ".png")
       ]
-    @screen = Preloader.getImage("img/screen" + Screen.SCALE + ".png")
+    @screen = Preloader.getImage("img/screen8.png")
     Screen.CENTER_OFFSET = Math.floor(Screen.WIN_SIZE / 2);
 
   clear: =>
@@ -367,12 +369,12 @@ class Screen
     @ctx.fillRect(0, 0, Screen.WIN_SIZE * Screen.UNIT * Screen.SCALE, Screen.WIN_SIZE * Screen.UNIT * Screen.SCALE)
 
   drawScreen: =>
-    @ctx.drawImage(@screen, 0, 0)
+    @ctx.drawImage(@screen, 0, 0, 128 * Screen.SCALE, 128 * Screen.SCALE)
 
   drawIcon: (icon, x, y) =>
     coords = Icons[icon];
     k = Screen.UNIT * Screen.SCALE
-    @ctx.drawImage(@icons[coords.block], k * coords.x, k * coords.y, k, k, x * Screen.SCALE, y * Screen.SCALE, k, k)
+    @ctx.drawImage(@icons[coords.block], 16 * coords.x, 16 * coords.y, 16, 16, x * Screen.SCALE, y * Screen.SCALE, k, k)
 
   drawImage: (image, x, y) =>
     @ctx.drawImage(image, x * Screen.SCALE, y * Screen.SCALE)
@@ -388,7 +390,7 @@ class Screen
       if (ix == m)
         ix = 0
         iy++
-    @ctx.drawImage(@icons[coords.block], k * ix, k * iy, k, k, x * Screen.SCALE, y * Screen.SCALE, k, k)
+    @ctx.drawImage(@icons[coords.block], 16 * ix, 16 * iy, 16, 16, x * Screen.SCALE, y * Screen.SCALE, k, k)
 
   drawCustomAnim: (custom, x, y) =>
     k = Screen.UNIT * Screen.SCALE
@@ -425,11 +427,12 @@ class Button
     @text = "BLAM"
 
   draw: (ctx) =>
+    ctx.imageSmoothingEnabled= false
     image = if @buttonOn then ButtonGrid.onImage else ButtonGrid.offImage
-    ctx.drawImage(image, Screen.SCALE * @x, Screen.SCALE * @y);
+    ctx.drawImage(image, Screen.SCALE * @x, Screen.SCALE * @y, 45 * Screen.SCALE, 23 * Screen.SCALE);
     if (@buttonOn)
       ButtonGrid.FONT.centerText(ctx, @text, "transparent", @x + 1, @y, ButtonGrid.BUTTON_WIDTH, ButtonGrid.BUTTON_HEIGHT)
-    ctx.drawImage(ButtonGrid.topImage, Screen.SCALE * @x, Screen.SCALE * @y);
+    ctx.drawImage(ButtonGrid.topImage, Screen.SCALE * @x, Screen.SCALE * @y, 45 * Screen.SCALE, 23 * Screen.SCALE);
     false
 
   enable: =>
@@ -495,10 +498,10 @@ class ButtonGrid
   buttons : null
 
   constructor: (@ctx, @gurk) ->
-    ButtonGrid.FONT = new Font(ButtonGrid.GURKOID_GLYPHS, "img/font_gurkoid" + Screen.SCALE + ".png")
-    ButtonGrid.onImage = Preloader.getImage("img/button" + Screen.SCALE + ".png")
-    ButtonGrid.offImage = Preloader.getImage("img/buttonoff" + Screen.SCALE + ".png")
-    ButtonGrid.topImage = Preloader.getImage("img/buttontop" + Screen.SCALE + ".png")
+    ButtonGrid.FONT = new Font(ButtonGrid.GURKOID_GLYPHS, "img/font_gurkoid1.png")
+    ButtonGrid.onImage = Preloader.getImage("img/button8.png")
+    ButtonGrid.offImage = Preloader.getImage("img/buttonoff8.png")
+    ButtonGrid.topImage = Preloader.getImage("img/buttontop8.png")
     #gapWidth = (ButtonGrid.GRID_WIDTH - 3 * ButtonGrid.BUTTON_WIDTH) / 4
     #gapHeight = (ButtonGrid.GRID_HEIGHT - 3 * ButtonGrid.BUTTON_HEIGHT) / 2
     index = 1
@@ -1078,6 +1081,7 @@ class ImageProcessor
   @LEFT : 270
 
   constructor : (@canvas, @ctx, @icons) ->
+    @ctx.imageSmoothingEnabled= false
     # No-op
 
   drawIcon : (icon) =>
@@ -1085,7 +1089,7 @@ class ImageProcessor
     y = 2;
     coords = Icons[icon];
     k = Screen.UNIT * Screen.SCALE
-    @ctx.drawImage(@icons[coords.block], k * coords.x, k * coords.y, k, k, x * Screen.SCALE, y * Screen.SCALE, k, k)
+    @ctx.drawImage(@icons[coords.block], 16 * coords.x, 16 * coords.y, 16, 16, x * Screen.SCALE, y * Screen.SCALE, k, k)
 
   drawRotated : (icon, degrees) =>
     @ctx.save();

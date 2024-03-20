@@ -348,7 +348,7 @@ var Data = {
 ",
 			width : 27,
 			height : 22,
-            dark : false,
+            dark : true,
             level : 1,
             groups : ["default"],
             encounterChance: 0,

@@ -321,10 +321,11 @@
 
       drawChar(ctx, c, x, y) {
         var glyph, xx, yy;
+        ctx.imageSmoothingEnabled = false;
         glyph = this.glyphMap[c];
         xx = x * Screen.SCALE;
         yy = y * Screen.SCALE;
-        ctx.drawImage(this.image, Screen.SCALE * glyph.x, Screen.SCALE * glyph.y, Screen.SCALE * glyph.width, Screen.SCALE * glyph.height, xx, yy, Screen.SCALE * glyph.width, Screen.SCALE * glyph.height);
+        ctx.drawImage(this.image, glyph.x, glyph.y, glyph.width, glyph.height, xx, yy, Screen.SCALE * glyph.width, Screen.SCALE * glyph.height);
         return glyph.width;
       }
 
@@ -443,9 +444,10 @@
         this.drawPixel = this.drawPixel.bind(this);
         this.fillRect = this.fillRect.bind(this);
         this.ctx = ctx1;
-        Screen.FONT = new Font(Screen.MICRO_GLYPHS, "img/font_micro" + Screen.SCALE + ".png");
-        this.icons = [Preloader.getImage("img/icons0-" + Screen.SCALE + ".png"), Preloader.getImage("img/icons1-" + Screen.SCALE + ".png")];
-        this.screen = Preloader.getImage("img/screen" + Screen.SCALE + ".png");
+        this.ctx.imageSmoothingEnabled = false;
+        Screen.FONT = new Font(Screen.MICRO_GLYPHS, "img/font_micro1.png");
+        this.icons = [Preloader.getImage("img/icons0-1" + ".png"), Preloader.getImage("img/icons1-1" + ".png")];
+        this.screen = Preloader.getImage("img/screen8.png");
         Screen.CENTER_OFFSET = Math.floor(Screen.WIN_SIZE / 2);
       }
 
@@ -459,14 +461,14 @@
       }
 
       drawScreen() {
-        return this.ctx.drawImage(this.screen, 0, 0);
+        return this.ctx.drawImage(this.screen, 0, 0, 128 * Screen.SCALE, 128 * Screen.SCALE);
       }
 
       drawIcon(icon, x, y) {
         var coords, k;
         coords = Icons[icon];
         k = Screen.UNIT * Screen.SCALE;
-        return this.ctx.drawImage(this.icons[coords.block], k * coords.x, k * coords.y, k, k, x * Screen.SCALE, y * Screen.SCALE, k, k);
+        return this.ctx.drawImage(this.icons[coords.block], 16 * coords.x, 16 * coords.y, 16, 16, x * Screen.SCALE, y * Screen.SCALE, k, k);
       }
 
       drawImage(image, x, y) {
@@ -487,7 +489,7 @@
             iy++;
           }
         }
-        return this.ctx.drawImage(this.icons[coords.block], k * ix, k * iy, k, k, x * Screen.SCALE, y * Screen.SCALE, k, k);
+        return this.ctx.drawImage(this.icons[coords.block], 16 * ix, 16 * iy, 16, 16, x * Screen.SCALE, y * Screen.SCALE, k, k);
       }
 
       drawCustomAnim(custom, x, y) {
@@ -1068,12 +1070,13 @@
 
       draw(ctx) {
         var image;
+        ctx.imageSmoothingEnabled = false;
         image = this.buttonOn ? ButtonGrid.onImage : ButtonGrid.offImage;
-        ctx.drawImage(image, Screen.SCALE * this.x, Screen.SCALE * this.y);
+        ctx.drawImage(image, Screen.SCALE * this.x, Screen.SCALE * this.y, 45 * Screen.SCALE, 23 * Screen.SCALE);
         if (this.buttonOn) {
           ButtonGrid.FONT.centerText(ctx, this.text, "transparent", this.x + 1, this.y, ButtonGrid.BUTTON_WIDTH, ButtonGrid.BUTTON_HEIGHT);
         }
-        ctx.drawImage(ButtonGrid.topImage, Screen.SCALE * this.x, Screen.SCALE * this.y);
+        ctx.drawImage(ButtonGrid.topImage, Screen.SCALE * this.x, Screen.SCALE * this.y, 45 * Screen.SCALE, 23 * Screen.SCALE);
         return false;
       }
 
@@ -1121,10 +1124,10 @@
         this.disableButtonByPosition = this.disableButtonByPosition.bind(this);
         this.ctx = ctx1;
         this.gurk = gurk1;
-        ButtonGrid.FONT = new Font(ButtonGrid.GURKOID_GLYPHS, "img/font_gurkoid" + Screen.SCALE + ".png");
-        ButtonGrid.onImage = Preloader.getImage("img/button" + Screen.SCALE + ".png");
-        ButtonGrid.offImage = Preloader.getImage("img/buttonoff" + Screen.SCALE + ".png");
-        ButtonGrid.topImage = Preloader.getImage("img/buttontop" + Screen.SCALE + ".png");
+        ButtonGrid.FONT = new Font(ButtonGrid.GURKOID_GLYPHS, "img/font_gurkoid1.png");
+        ButtonGrid.onImage = Preloader.getImage("img/button8.png");
+        ButtonGrid.offImage = Preloader.getImage("img/buttonoff8.png");
+        ButtonGrid.topImage = Preloader.getImage("img/buttontop8.png");
         //gapWidth = (ButtonGrid.GRID_WIDTH - 3 * ButtonGrid.BUTTON_WIDTH) / 4
         //gapHeight = (ButtonGrid.GRID_HEIGHT - 3 * ButtonGrid.BUTTON_HEIGHT) / 2
         index = 1;
@@ -2337,6 +2340,7 @@
         this.canvas = canvas;
         this.ctx = ctx1;
         this.icons = icons;
+        this.ctx.imageSmoothingEnabled = false;
       }
 
       drawIcon(icon) {
@@ -2345,7 +2349,7 @@
         y = 2;
         coords = Icons[icon];
         k = Screen.UNIT * Screen.SCALE;
-        return this.ctx.drawImage(this.icons[coords.block], k * coords.x, k * coords.y, k, k, x * Screen.SCALE, y * Screen.SCALE, k, k);
+        return this.ctx.drawImage(this.icons[coords.block], 16 * coords.x, 16 * coords.y, 16, 16, x * Screen.SCALE, y * Screen.SCALE, k, k);
       }
 
       drawRotated(icon, degrees) {
@@ -5137,7 +5141,7 @@
         this.posX = this.game.x;
         this.posY = this.game.y;
         this.mapMode = false;
-        this.shadowOverlay = Preloader.getImage("img/shadow" + Screen.SCALE + ".png");
+        this.shadowOverlay = Preloader.getImage("img/shadow8.png");
         this.setButton(1, "HEROES");
         this.setButton(9, "MAP");
         this.setButton(3, "SAVE");
@@ -5324,7 +5328,7 @@
         partyIcon = this.game.aboard ? Data.icons.ship : Data.icons.party;
         this.drawTile(partyIcon, Screen.CENTER_OFFSET, Screen.CENTER_OFFSET);
         if (this.map.dark) {
-          this.screen.drawImage(this.shadowOverlay, 0, 0);
+          this.screen.drawImage(this.shadowOverlay, 0, 0, 128 * Screen.SCALE, 128 * Screen.SCALE);
         }
         if (this.mapMode) {
           sx = 128 - this.width - 5;
@@ -10406,15 +10410,15 @@
         //Screen.SCALE = 4
         console.log(`Preloading..., scale is ${Screen.SCALE}`);
         // Preloader.reset()
-        Preloader.load("img/icons0-" + Screen.SCALE + ".png");
-        Preloader.load("img/icons1-" + Screen.SCALE + ".png");
-        Preloader.load("img/screen" + Screen.SCALE + ".png");
-        Preloader.load("img/font_micro" + Screen.SCALE + ".png");
-        Preloader.load("img/font_gurkoid" + Screen.SCALE + ".png");
-        Preloader.load("img/button" + Screen.SCALE + ".png");
-        Preloader.load("img/buttonoff" + Screen.SCALE + ".png");
-        Preloader.load("img/buttontop" + Screen.SCALE + ".png");
-        Preloader.load("img/shadow" + Screen.SCALE + ".png");
+        Preloader.load("img/icons0-1.png");
+        Preloader.load("img/icons1-1.png");
+        Preloader.load("img/screen8.png");
+        Preloader.load("img/font_micro1.png");
+        Preloader.load("img/font_gurkoid1.png");
+        Preloader.load("img/button8.png");
+        Preloader.load("img/buttonoff8.png");
+        Preloader.load("img/buttontop8.png");
+        Preloader.load("img/shadow8.png");
         console.log("Preloading started...");
         // End images
         Preloader.setCallback(this.start);

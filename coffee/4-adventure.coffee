@@ -410,7 +410,7 @@ class MapView extends TileView
     @posX = @game.x
     @posY = @game.y
     @mapMode = false
-    @shadowOverlay = Preloader.getImage("img/shadow" + Screen.SCALE + ".png")
+    @shadowOverlay = Preloader.getImage("img/shadow8.png")
     @setButton(1, "HEROES")
     @setButton(9, "MAP")
     @setButton(3, "SAVE")
@@ -537,7 +537,7 @@ class MapView extends TileView
     partyIcon = if @game.aboard then Data.icons.ship else Data.icons.party
     @drawTile(partyIcon, Screen.CENTER_OFFSET, Screen.CENTER_OFFSET)
     if (@map.dark)
-      @screen.drawImage(@shadowOverlay, 0, 0)
+      @screen.drawImage(@shadowOverlay, 0, 0, 128 * Screen.SCALE, 128 * Screen.SCALE)
     if (@mapMode)
       sx = 128 - @width - 5
       if (sx < 10)
