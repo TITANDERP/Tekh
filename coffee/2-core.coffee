@@ -379,6 +379,9 @@ class Screen
   drawImage: (image, x, y) =>
     @ctx.drawImage(image, x * Screen.SCALE, y * Screen.SCALE)
 
+  drawImageScaled: (image, x, y, width, height) =>
+    @ctx.drawImage(image, x * Screen.SCALE, y * Screen.SCALE, width, height)
+
   drawAnim: (anim, x, y, frame) =>
     coords = Icons[anim];
     ix = coords.x
